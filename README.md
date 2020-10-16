@@ -1,6 +1,6 @@
 ## Part 3
 
-- [ ] Exercise 3.1
+- [x] Exercise 3.1
 - [ ] Exercise 3.2
 - [ ] Exercise 3.3
 - [ ] Exercise 3.4
