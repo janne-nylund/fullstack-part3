@@ -1,2 +1,3 @@
-# fullstack-part3
-testing readme
+## Part 3
+
+- [ ] Exercise 3.1
