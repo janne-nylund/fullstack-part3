@@ -8,7 +8,7 @@ morgan.token('my_token', function(req,res){
   return JSON.stringify(req.body)
  })
 
-app.use(morgan(':method :status :res[content-length] - :response-time ms :my_token'));
+app.use(morgan(':method :url :status :res[content-length] - :response-time ms :my_token'));
 
 let persons = [
       {
@@ -66,7 +66,7 @@ app.post('/api/persons', (request, response) => {
 
   const personExists = persons.find(person => person.name === body.name)
   if (personExists) {
-    return response.status(400).json({ 
+    return response.status(403).json({ 
       error: 'name must be unique' 
     })
   }

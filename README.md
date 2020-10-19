@@ -7,4 +7,4 @@
 - [x] Exercise 3.5
 - [x] Exercise 3.6
 - [x] Exercise 3.7
-- [ ] Exercise 3.8
+- [x] Exercise 3.8
