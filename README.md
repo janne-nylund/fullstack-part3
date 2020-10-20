@@ -11,4 +11,4 @@ Link to Heroku app: https://salty-atoll-11726.herokuapp.com/
 - [x] Exercise 3.8
 - [x] Exercise 3.9
 - [x] Exercise 3.10
-- [ ] Exercise 3.11
+- [x] Exercise 3.11
