@@ -1,4 +1,5 @@
 ## Part 3
+Link to Heroku app: https://salty-atoll-11726.herokuapp.com/
 
 - [x] Exercise 3.1
 - [x] Exercise 3.2
