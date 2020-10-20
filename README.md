@@ -8,3 +8,6 @@
 - [x] Exercise 3.6
 - [x] Exercise 3.7
 - [x] Exercise 3.8
+- [x] Exercise 3.9
+- [ ] Exercise 3.10
+- [ ] Exercise 3.11
