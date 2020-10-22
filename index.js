@@ -44,7 +44,9 @@ app.get('/', (req, res) => {
 })
 
 app.get('/info', (req, res) => {
-  res.send('<p>Phonebook has info for ' + req.estimatedDocumentCount() + ' people.</p><p>' + new Date() + '</p>')
+  Person.countDocuments({}, (err, count) => {
+  res.send('<p>Phonebook has info for ' + count + ' people.</p><p>' + new Date() + '</p>')
+  });
 })
   
 app.get('/api/persons', (request, response) => {
