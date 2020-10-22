@@ -1,7 +1,8 @@
-POST https://salty-atoll-11726.herokuapp.com/api/persons
+//POST https://salty-atoll-11726.herokuapp.com/api/persons
+POST http://localhost:3001/api/persons
 Content-Type: application/json
 
 {
-    "name": "Janne Nylund",
-    "number": "123-123 4567"
+    "name": "Timo Testaaja",
+    "number": "123-123 5555"
 }
