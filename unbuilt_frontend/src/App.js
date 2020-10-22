@@ -90,14 +90,14 @@ const App = (props) => {
   }
   
   const removePerson = (id) => {
-    const personToRemove = persons.find(person => person.id === Number(id))
+    const personToRemove = persons.find(person => person.id === id)
     if (window.confirm(`Delete ${personToRemove.name}?`)){   
       personService
       .remove(id)
       .then(response => {
       setFilterValue('')
-      setPersons(persons.filter(p => p.id !== Number(id)))
-      setPersonsToShow(persons.filter(p => p.id !== Number(id)))
+      setPersons(persons.filter(p => p.id !== id))
+      setPersonsToShow(persons.filter(p => p.id !== id))
       setSuccessMessage(`${personToRemove.name} was deleted, status: ${response}`)
           setTimeout(() => {
             setSuccessMessage(null)
