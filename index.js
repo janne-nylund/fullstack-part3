@@ -12,7 +12,7 @@ app.use(express.static('build'))
 
 morgan.token('my_token', function(req,res){
   return JSON.stringify(req.body)
- })
+})
 
 app.use(morgan(':method :url :status :res[content-length] - :response-time ms :my_token'));
 
@@ -43,11 +43,20 @@ app.get('/', (req, res) => {
     res.send('<h1>Phonebook!</h1>')
 })
 
-app.get('/info', (req, res) => {
-  Person.countDocuments({}, (err, count) => {
-  res.send('<p>Phonebook has info for ' + count + ' people.</p><p>' + new Date() + '</p>')
-  });
+app.get('/info', (req, res, next) => {
+  Person
+    .estimatedDocumentCount()
+    .then(docCount => {
+      res.send('<p>Phonebook has info for ' + docCount + ' people.</p><p>' + new Date() + '</p>')
+    })
+    .catch(error => next(error))
 })
+
+/* app.get('/info', (req, res) => {
+  Person.find().exec(function (err, results) {
+    res.send('<p>Phonebook has info for ' + results.length + ' people.</p><p>' + new Date() + '</p>')
+  });
+}) */
   
 app.get('/api/persons', (request, response) => {
   Person.find({}).then(persons => {
