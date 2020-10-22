@@ -44,7 +44,7 @@ app.get('/', (req, res) => {
 })
 
 app.get('/info', (req, res) => {
-  res.send('<p>Phonebook has info for ' + persons.length + ' people.</p><p>' + new Date() + '</p>')
+  res.send('<p>Phonebook has info for ' + req.estimatedDocumentCount() + ' people.</p><p>' + new Date() + '</p>')
 })
   
 app.get('/api/persons', (request, response) => {
@@ -52,14 +52,6 @@ app.get('/api/persons', (request, response) => {
     response.json(persons.map(person => person.toJSON()))
   })
 })
-
-/* app.get('/api/persons', (req, res) => {
-  res.json(persons)
-})
-
-const generateId = () => {
-  return Math.floor(Number.MAX_SAFE_INTEGER * Math.random())
-} */
 
 app.post('/api/persons', (request, response) => {
   const body = request.body
@@ -111,7 +103,7 @@ app.put('/api/persons/:id', (request, response, next) => {
 
   Person.findByIdAndUpdate(request.params.id, person, { new: true })
     .then(updatedPerson => {
-      response.json(updatedPerson)
+      response.json(updatedPerson.toJSON())
     })
     .catch(error => next(error))
 })
