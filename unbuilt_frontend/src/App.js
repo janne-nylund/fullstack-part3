@@ -54,17 +54,21 @@ const App = (props) => {
       })
 
       .catch(error => {
-        setErrorMessage(
-          `${personToUpdate.name} was already removed from server`
-        )
-        setTimeout(() => {
-          setErrorMessage(null)
-        }, 2500)
-        setPersons(persons.filter(p => p.id !== personToUpdate.id))
-        setPersonsToShow(persons.filter(p => p.id !== personToUpdate.id))
+        if (error.response.data.error === undefined) {
+          setErrorMessage(`${personToUpdate.name} was already removed from server`)
+          setTimeout(() => {
+            setErrorMessage(null)
+          }, 3500)
+          setPersons(persons.filter(p => p.id !== personToUpdate.id))
+          setPersonsToShow(persons.filter(p => p.id !== personToUpdate.id))       
+        } else {
+          setErrorMessage(`${error.response.data.error}`)
+          setTimeout(() => {
+            setErrorMessage(null)
+          }, 3500)
+        }
+        
       })
-
-
       }
     }
     else if (persons.some(person => person.name.toLowerCase() === newName.toLowerCase() && person.number === newNumber)) {
@@ -84,8 +88,13 @@ const App = (props) => {
           setTimeout(() => {
             setSuccessMessage(null)
           }, 2500)
-    })
-      
+        })
+        .catch(error => {
+          setErrorMessage(`${error.response.data.error}`)
+          setTimeout(() => {
+            setErrorMessage(null)
+          }, 3500)
+        })
     }
   }
   
