@@ -47,16 +47,10 @@ app.get('/info', (req, res, next) => {
   Person
     .estimatedDocumentCount()
     .then(docCount => {
-      res.send('<p>Phonebook has info for ' + docCount + ' people.</p><p>' + new Date() + '</p>')
+      res.send('<p>The Phonebook has info for ' + docCount + ' people.</p><p>' + new Date() + '</p>')
     })
     .catch(error => next(error))
 })
-
-/* app.get('/info', (req, res) => {
-  Person.find().exec(function (err, results) {
-    res.send('<p>Phonebook has info for ' + results.length + ' people.</p><p>' + new Date() + '</p>')
-  });
-}) */
   
 app.get('/api/persons', (request, response) => {
   Person.find({}).then(persons => {
