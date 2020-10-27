@@ -10,37 +10,37 @@ app.use(cors())
 app.use(express.json())
 app.use(express.static('build'))
 
-morgan.token('my_token', function(req,res){
+morgan.token('my_token', function(req){
   return JSON.stringify(req.body)
 })
 
-app.use(morgan(':method :url :status :res[content-length] - :response-time ms :my_token'));
+app.use(morgan(':method :url :status :res[content-length] - :response-time ms :my_token'))
 
-let persons = [
-      {
-        "name": "Arto Hellas",
-        "number": "040-123456",
-        "id": 1
-      },
-      {
-        "name": "Ada Lovelace",
-        "number": "39-44-5323523",
-        "id": 2
-      },
-      {
-        "name": "Dan Abramov",
-        "number": "12-43-234345",
-        "id": 3
-      },
-      {
-        "name": "Mary Poppendieck",
-        "number": "39-23-6423122",
-        "id": 4
-      }
-]
+/* let persons = [
+  {
+    "name": "Arto Hellas",
+    "number": "040-123456",
+    "id": 1
+  },
+  {
+    "name": "Ada Lovelace",
+    "number": "39-44-5323523",
+    "id": 2
+  },
+  {
+    "name": "Dan Abramov",
+    "number": "12-43-234345",
+    "id": 3
+  },
+  {
+    "name": "Mary Poppendieck",
+    "number": "39-23-6423122",
+    "id": 4
+  }
+] */
 
 app.get('/', (req, res) => {
-    res.send('<h1>Phonebook!</h1>')
+  res.send('<h1>Phonebook!</h1>')
 })
 
 app.get('/info', (req, res, next) => {
@@ -51,7 +51,7 @@ app.get('/info', (req, res, next) => {
     })
     .catch(error => next(error))
 })
-  
+
 app.get('/api/persons', (request, response) => {
   Person.find({}).then(persons => {
     response.json(persons.map(person => person.toJSON()))
@@ -81,12 +81,12 @@ app.post('/api/persons', (request, response, next) => {
   person.save().then(savedPerson => {
     response.json(savedPerson.toJSON())
   })
-  .catch(error => next(error))
+    .catch(error => next(error))
 })
 
 app.get('/api/persons/:id', (request, response, next) => {
   Person.findById(request.params.id)
-  .then(person => {
+    .then(person => {
       if (person) {
         response.json(person)
       } else {
@@ -113,7 +113,7 @@ app.put('/api/persons/:id', (request, response, next) => {
 
 app.delete('/api/persons/:id', (request, response, next) => {
   Person.findByIdAndRemove(request.params.id)
-    .then(result => {
+    .then(() => {
       response.status(204).end()
     })
     .catch(error => next(error))
@@ -140,8 +140,8 @@ const errorHandler = (error, request, response, next) => {
 }
 
 app.use(errorHandler)
-  
-const PORT = process.env.PORT 
+
+const PORT = process.env.PORT
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`)
 })
